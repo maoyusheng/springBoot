@@ -28,6 +28,7 @@ public class  CityServiceImpl implements CityService {
 
     @Override
     public PageInfo<City> getCitiesBySearchVo(int countryId, SearchVo searchVo) {
+        searchVo.initSearchVo();//初始化当前页
         PageHelper.startPage(searchVo.getCurrentPage(),searchVo.getPageSize());
         //return cityDao.getCitiesBySearchVo(countryId,searchVo);
         return new PageInfo<City>(Optional.ofNullable(cityDao.getCitiesByCountryId(countryId)).orElse(Collections.emptyList()));
